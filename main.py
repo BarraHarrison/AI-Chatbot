@@ -45,3 +45,17 @@ class ChatbotAssistant:
 
         self.X = None
         self.y = None
+
+
+    @staticmethod
+    def tokenize_and_lemmatize(text):
+        lemmatizer = nltk.WordNetLemmatizer()
+
+        words = nltk.word_tokenize(text)
+        words = [lemmatizer.lemmatize(word.lower()) for word in words]
+
+        return words
+
+
+chatbot = ChatbotAssistant("intents.json")
+print(chatbot.tokenize_and_lemmatize("Hello World! How are you? I am programming in Python today."))
