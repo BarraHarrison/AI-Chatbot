@@ -55,7 +55,8 @@ class ChatbotAssistant:
         words = [lemmatizer.lemmatize(word.lower()) for word in words]
 
         return words
+    
+    @staticmethod
+    def bag_of_words(words, vocabulary):
+        return [1 if word in words else 0 for word in vocabulary]
 
-
-chatbot = ChatbotAssistant("intents.json")
-print(chatbot.tokenize_and_lemmatize("Hello World! How are you? I am programming in Python today."))
