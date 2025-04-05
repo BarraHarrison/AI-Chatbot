@@ -60,3 +60,12 @@ class ChatbotAssistant:
     def bag_of_words(words, vocabulary):
         return [1 if word in words else 0 for word in vocabulary]
 
+    def parse_intents(self):
+        lemmatizer = nltk.WordNetLemmatizer()
+
+        if os.path.exists(self.intents_path):
+            with open(self.intents_path, "r") as f:
+                intents_data = json.loads(f)
+
+        
+
