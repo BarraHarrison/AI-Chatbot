@@ -28,3 +28,20 @@ class ChatbotModel(nn.Module):
         x = self.relu(self.fc2(x))
         x = self.dropout(x)
         x = self.fc3(x)
+
+
+class ChatbotAssistant:
+    
+    def __init__(self, intents_path, function_mappings=None):
+        self.model = None
+        self.intents_path = intents_path
+
+        self.documents = []
+        self.vocabulary = []
+        self.intents = []
+        self.intents_responses = []
+
+        self.function_mappings = function_mappings
+
+        self.X = None
+        self.y = None
