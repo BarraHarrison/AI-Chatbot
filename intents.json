@@ -1,0 +1,287 @@
+{
+    "intents": [
+        {
+            "tag": "greeting",
+            "patterns": [
+                "Hi",
+                "How are you?",
+                "Is there anyone there?",
+                "Hello",
+                "Good day sir!",
+                "How's it going?",
+                "Hey",
+                "Hey there",
+                "What's up?",
+                "Hiya"
+            ],
+            "responses": [
+                "Hello!",
+                "Good to see you again!",
+                "Hi there! How can I help you today?"
+            ]
+        },
+        {
+            "tag": "goodbye",
+            "patterns": [
+                "Bye",
+                "See you later",
+                "Goodbye",
+                "I have to go now",
+                "Catch you later",
+                "Talk to you soon"
+            ],
+            "responses": [
+                "See you later!",
+                "Goodbye! Have a great day!",
+                "Take care!"
+            ]
+        },
+        {
+            "tag": "thanks",
+            "patterns": [
+                "Thanks",
+                "Thank you",
+                "That's helpful",
+                "Awesome, thanks",
+                "Thanks a lot"
+            ],
+            "responses": [
+                "You're welcome!",
+                "Happy to help!",
+                "Any time!",
+                "My pleasure!"
+            ]
+        },
+        {
+            "tag": "name",
+            "patterns": [
+                "What's your name?",
+                "Who are you?",
+                "Can you tell me your name?",
+                "What do I call you?"
+            ],
+            "responses": [
+                "I'm your AI assistant!",
+                "You can call me ChatBot.",
+                "I'm a friendly chatbot created to help you."
+            ]
+        },
+        {
+            "tag": "help",
+            "patterns": [
+                "I need help",
+                "Can you help me?",
+                "What can you do?",
+                "Help me please"
+            ],
+            "responses": [
+                "Sure! I'm here to assist you with whatever I can.",
+                "I can help you with general questions, just ask me something!",
+                "Of course, just tell me what you need help with."
+            ]
+        },
+        {
+            "tag": "joke",
+            "patterns": [
+                "Tell me a joke",
+                "Make me laugh",
+                "Do you know any jokes?",
+                "I need a laugh"
+            ],
+            "responses": [
+                "Why don't scientists trust atoms? Because they make up everything!",
+                "I would tell you a construction joke... but I'm still working on it.",
+                "Why did the computer show up at work late? It had a hard drive!"
+            ]
+        },
+        {
+            "tag": "weather",
+            "patterns": [
+                "What's the weather like?",
+                "Is it sunny today?",
+                "Will it rain tomorrow?",
+                "Tell me the forecast"
+            ],
+            "responses": [
+                "I'm not connected to a weather API right now, but you can check your local forecast online!",
+                "It's always sunny in the virtual world!",
+                "You might want to check a weather app for accurate info."
+            ]
+        },
+        {
+            "tag": "book_flight",
+            "patterns": [
+                "I want to book a flight",
+                "Book a plane ticket",
+                "Help me find a flight",
+                "Schedule a flight"
+            ],
+            "responses": [
+                "Sure, I can help with that. Where would you like to fly to?",
+                "Let's get started! Where are you going and when?"
+            ]
+        },
+        {
+            "tag": "set_reminder",
+            "patterns": [
+                "Remind me to call mom",
+                "Set a reminder for 5pm",
+                "Can you remind me to exercise?",
+                "Remind me tomorrow at 10am"
+            ],
+            "responses": [
+                "Got it! I’ll remind you.",
+                "Reminder set!",
+                "I’ve scheduled your reminder."
+            ]
+        },
+        {
+            "tag": "programming_help",
+            "patterns": [
+                "How do I write a for loop in Python?",
+                "Explain recursion",
+                "What is a class in Java?",
+                "Help me with coding"
+            ],
+            "responses": [
+                "Sure! Let me explain that to you.",
+                "Here's how you do that...",
+                "Let me give you a quick example."
+            ]
+        },
+        {
+            "tag": "world_news",
+            "patterns": [
+                "What's happening in the world?",
+                "Tell me the latest news",
+                "World news update",
+                "Any news today?"
+            ],
+            "responses": [
+                "I don’t have live news updates yet, but you can check your favorite news site!",
+                "You might want to look at BBC or CNN for real-time updates."
+            ]
+        },
+        {
+            "tag": "book_hotel",
+            "patterns": [
+                "Book a hotel",
+                "I need a room",
+                "Find me a hotel nearby",
+                "Hotel reservation please"
+            ],
+            "responses": [
+                "What city are you looking for a hotel in?",
+                "Let’s book your stay. Where and when?"
+            ]
+        },
+        {
+            "tag": "translate",
+            "patterns": [
+                "Translate hello to Spanish",
+                "How do you say love in French?",
+                "Translate thank you",
+                "Can you translate this for me?"
+            ],
+            "responses": [
+                "'Hello' in Spanish is 'Hola'",
+                "Of course! What would you like me to translate?"
+            ]
+        },
+        {
+            "tag": "math_help",
+            "patterns": [
+                "What's 5 plus 7?",
+                "Can you solve 9 * 3?",
+                "Do math for me",
+                "Calculate 8 squared"
+            ],
+            "responses": [
+                "The answer is 12",
+                "Let me calculate that...",
+                "Sure! Here's the result."
+            ]
+        },
+        {
+            "tag": "time",
+            "patterns": [
+                "What time is it?",
+                "Tell me the current time",
+                "Do you know the time?",
+                "Clock please"
+            ],
+            "responses": [
+                "I'm not synced with real-time clocks, but you can check your device for the current time.",
+                "Time flies when you're chatting with a bot!"
+            ]
+        },
+        {
+            "tag": "date",
+            "patterns": [
+                "What's the date today?",
+                "Tell me today's date",
+                "Which day is it?",
+                "Current date?"
+            ],
+            "responses": [
+                "I'm not synced to a real-time calendar, but check your device’s date!",
+                "You can check your system calendar for the exact date."
+            ]
+        },
+        {
+            "tag": "motivation",
+            "patterns": [
+                "Tell me something motivational",
+                "I need inspiration",
+                "Motivate me",
+                "Say something positive"
+            ],
+            "responses": [
+                "Believe in yourself! You are capable of amazing things.",
+                "Every day is a fresh start.",
+                "Keep going! You're doing great."
+            ]
+        },
+        {
+            "tag": "fun_fact",
+            "patterns": [
+                "Tell me a fun fact",
+                "I want to learn something new",
+                "Give me a fact",
+                "Interesting trivia?"
+            ],
+            "responses": [
+                "Did you know? Honey never spoils!",
+                "Octopuses have three hearts!",
+                "Bananas are berries, but strawberries aren't."
+            ]
+        },
+        {
+            "tag": "coronavirus",
+            "patterns": [
+                "What is COVID-19?",
+                "Tell me about the coronavirus",
+                "Latest COVID updates",
+                "Is COVID still around?"
+            ],
+            "responses": [
+                "COVID-19 is a respiratory illness caused by a novel coronavirus. For up-to-date info, check the WHO website.",
+                "Please refer to official sources like WHO or CDC for accurate COVID updates."
+            ]
+        },
+        {
+            "tag": "movie_recommendation",
+            "patterns": [
+                "Recommend a movie",
+                "Any good movies?",
+                "What should I watch?",
+                "Movie night ideas?"
+            ],
+            "responses": [
+                "How about Inception? It’s a classic!",
+                "You might enjoy The Matrix or Interstellar.",
+                "If you're into comedies, try Superbad or The Grand Budapest Hotel."
+            ]
+        }
+    ]
+}

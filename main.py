@@ -67,5 +67,10 @@ class ChatbotAssistant:
             with open(self.intents_path, "r") as f:
                 intents_data = json.loads(f)
 
-        
+            intents = []
+            intents_responses = []
+            vocabulary = []
+            documents = []
 
+            for intent in intents_data["intents"]:
+                pass
