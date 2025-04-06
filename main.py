@@ -148,3 +148,11 @@ if __name__ == "__main__":
     assistant.prepare_data()
     assistant.train_model(batch_size=8, lr=0.001, epochs=100)
     assistant.save_model("chatbot_model.pth", "dimensions.json")
+
+    while True:
+        message = input("Enter your message: ")
+
+        if message == "/quit":
+            break
+
+        print(assistant.process_message(message))
