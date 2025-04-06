@@ -282,6 +282,24 @@
                 "You might enjoy The Matrix or Interstellar.",
                 "If you're into comedies, try Superbad or The Grand Budapest Hotel."
             ]
+        },
+        {
+            "tag": "stocks",
+            "patterns": [
+                "What's the stock market doing?",
+                "Tell me the latest stock prices",
+                "How are the stocks today?",
+                "Give me stock updates",
+                "Stock market news?",
+                "What's Tesla's stock price?",
+                "Check Apple stock",
+                "How is the S&P 500 performing?"
+            ],
+            "responses": [
+                "I'm not currently connected to live stock data, but you can check Yahoo Finance or Bloomberg for the latest updates.",
+                "Stock prices are constantly changing. For real-time info, try using a finance app or website.",
+                "I can help explain stocks or investing basics if you'd like!"
+            ]
         }
     ]
 }
