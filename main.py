@@ -73,4 +73,6 @@ class ChatbotAssistant:
             documents = []
 
             for intent in intents_data["intents"]:
-                pass
+                if intent["tag"] not in intents:
+                    intents.append(intent["tag"])
+                    intents_responses[intent["tag"]] = intent["responses"]
