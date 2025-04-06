@@ -68,7 +68,7 @@ class ChatbotAssistant:
                 intents_data = json.loads(f)
 
             intents = []
-            intents_responses = []
+            intents_responses = {}
             vocabulary = []
             documents = []
 
