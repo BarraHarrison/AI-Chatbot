@@ -56,8 +56,7 @@ class ChatbotAssistant:
 
         return words
     
-    @staticmethod
-    def bag_of_words(words, vocabulary):
+    def bag_of_words(self, words, vocabulary):
         return [1 if word in words else 0 for word in vocabulary]
 
     def parse_intents(self):
@@ -74,7 +73,15 @@ class ChatbotAssistant:
 
                 for pattern in intent["patterns"]:
                     pattern_words = self.tokenize_and_lemmatize(pattern)
-                    vocabulary.extend(pattern_words)
+                    self.vocabulary.extend(pattern_words)
                     self.documents.append(pattern_words, intent["tag"])
 
-                vocabulary = sorted(set(vocabulary))
+                self.vocabulary = sorted(set(self.vocabulary))
+
+    def prepare_data(self):
+        bags = []
+        indices = []
+
+        for document in self.documents:
+            words = document[0]
+            bag = self.bag_of_words(words, self.vocabulary)
