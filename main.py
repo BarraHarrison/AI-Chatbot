@@ -102,3 +102,25 @@ class ChatbotAssistant:
 
         dataset = TensorDataset(X_tensor, y_tensor)
         loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
+
+        self.model = ChatbotModel(self.X.shape[1], len(self.intents))
+
+        criterion = nn.CrossEntropyLoss()
+        optimizer = optim.Adam(self.model.parameters(), lr=lr)
+
+        for epoch in range(epochs):
+            running_loss = 0.0
+
+            for batch_X, batch_y in loader:
+                optimizer.zero_grad()
+                outputs = self.model(batch_X)
+                loss = criterion(outputs, batch_y)
+                loss.backward()
+                optimizer.step()
+                running_loss += loss
+
+            print(f"Epoch {epoch+1}: Loss: {running_loss / len(loader):.4f}")
+
+    
+    def save_model():
+        pass
