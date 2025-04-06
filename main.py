@@ -3,7 +3,8 @@ import json
 import random
 
 import nltk
-import numpy as np 
+import numpy as np
+import torch 
 import torch.nn as nn 
 import torch.nn.functional as F 
 import torch.optim as optim 
@@ -84,4 +85,20 @@ class ChatbotAssistant:
 
         for document in self.documents:
             words = document[0]
-            bag = self.bag_of_words(words, self.vocabulary)
+            bag = self.bag_of_words(words)
+
+            intent_index = self.intents.index(document[1])
+
+            bags.append(bag)
+            indices.append(intent_index)
+
+        self.X = np.array(bags)
+        self.y = np.array(indices)
+
+
+    def train_model(self, batch_size, lr, epochs):
+        X_tensor = torch.tensor(self.X, dtype=torch.float32)
+        y_tensor = torch.tensor(self.y, dtype=torch.long)
+
+        dataset = TensorDataset(X_tensor, y_tensor)
+        loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
