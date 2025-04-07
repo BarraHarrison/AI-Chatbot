@@ -146,8 +146,16 @@ if __name__ == "__main__":
     assistant = ChatbotAssistant("intents.json", function_mappings={"stocks": get_stocks})
     assistant.parse_intents()
     assistant.prepare_data()
-    assistant.train_model(batch_size=8, lr=0.001, epochs=100)
-    assistant.save_model("chatbot_model.pth", "dimensions.json")
+
+    model_exists = os.path.exists("chatbot_model.pth") and os.path.exists("dimensions.json")
+
+    if model_exists:
+        print("📦 Loading existing model...")
+        assistant.load_model("chatbot_model.pth", "dimensions.json")
+    else:
+        print("🛠️ Training model...")
+        assistant.train_model(batch_size=8, lr=0.001, epochs=100)
+        assistant.save_model("chatbot_model.pth", "dimensions.json")
 
     print("🤖 Chatbot is ready! Type your message below (type 'quit', 'stop', or 'leave' to exit).")
 
