@@ -144,13 +144,21 @@ def get_stocks():
     return f"Today's stock picks are: {chosen[0]} and {chosen[1]} 📈"
 
 def get_date():
-    pass
+    today = datetime.date.today().strftime("%A, %B %d, %Y")
+    return f"Today's date is {today} 📅"
 
 def get_time():
-    pass
+    now = datetime.datetime.now().strftime("%H:%M:%S")
+    return f"The current time is {now} 🕒"
+
 
 def get_joke():
-    pass
+    jokes = [
+        "Why did the programmer quit his job? Because he didn't get arrays.",
+        "Why do Java developers wear glasses? Because they can't C#.",
+        "How many programmers does it take to change a light bulb? None. It's a hardware problem!"
+    ]
+    return random.choice(jokes)
 
 
 if __name__ == "__main__":
