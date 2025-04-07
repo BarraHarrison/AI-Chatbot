@@ -191,7 +191,8 @@ if __name__ == "__main__":
     "stocks": get_stocks,
     "date": get_date,
     "time": get_time,
-    "joke": get_joke
+    "joke": get_joke,
+    "news": get_news
 })
 
     assistant.parse_intents()

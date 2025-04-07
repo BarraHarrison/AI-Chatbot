@@ -136,17 +136,17 @@
             ]
         },
         {
-            "tag": "world_news",
+            "tag": "news",
             "patterns": [
-                "What's happening in the world?",
-                "Tell me the latest news",
-                "World news update",
-                "Any news today?"
+                "What's in the news?",
+                "Give me the latest headlines",
+                "Show me trending topics",
+                "News update",
+                "What's happening?",
+                "Any news?",
+                "Trending stories"
             ],
-            "responses": [
-                "I don’t have live news updates yet, but you can check your favorite news site!",
-                "You might want to look at BBC or CNN for real-time updates."
-            ]
+            "responses": []
         },
         {
             "tag": "book_hotel",
