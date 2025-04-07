@@ -184,6 +184,24 @@ def get_news():
         return "📰 Here are the top headlines:\n" + "\n".join(headlines)
     else:
         return "Sorry, I couldn't fetch the news at the moment."
+    
+
+def get_weather():
+    api_key = os.getenv("WEATHER_API_KEY")
+    city = input("🤖 Which city would you like the weather for? ").strip()
+
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        data = response.json()
+        weather = data["weather"][0]["description"].capitalize()
+        temp = data["main"]["temp"]
+        feels_like = data["main"]["feels_like"]
+        return f"🌦️ Weather in {city}:\n{weather}, {temp}°C (feels like {feels_like}°C)"
+    else:
+        return f"Sorry, I couldn't find the weather for '{city}'. Please try another city."
+
 
 
 if __name__ == "__main__":
