@@ -155,7 +155,7 @@ class ChatbotAssistant:
 def get_stocks():
     api_key = os.getenv("STOCK_API_KEY")
     symbols = ["AAPL", "TSLA", "MSFT", "GOOGL", "AMZN", "META", "NVDA", "NFLX", "INTC", "IBM"]
-    selected = random.sample(symbols, 2)
+    selected = random.sample(symbols, 6)
     results = []
 
     for symbol in selected:
@@ -165,12 +165,13 @@ def get_stocks():
 
         if response.status_code == 200:
             data = response.json()
-            if "price" in data:
-                price = data["price"]
+            if "close" in data and "percent_change" in data:
+                close = data["close"]
                 change = data["percent_change"]
-                results.append(f"{symbol}: ${price} ({change}%)")
+                market_status = "🟢 Market Open" if data.get("is_market_open") else "🔴 Market Closed"
+                results.append(f"{symbol}: ${close} ({change}%) - {market_status}")
             else:
-                results.append(f"{symbol}: No data available.")
+                results.append(f"{symbol}: Data not available.")
         else:
             results.append(f"{symbol}: Failed to fetch data.")
 
