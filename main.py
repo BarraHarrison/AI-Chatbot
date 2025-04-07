@@ -125,8 +125,19 @@ class ChatbotAssistant:
         self.model.eval()
         with torch.no_grad():
             predictions = self.model(bag_tensor)
+            probs = torch.softmax(predictions, dim=1)
+            confidence, predicted_class_index = torch.max(probs, dim=1)
 
-        predicted_class_index = torch.argmax(predictions, dim=1).item()
+        confidence = confidence.item()
+        predicted_class_index = predicted_class_index.item()
+
+        if confidence < 0.75:
+            return random.choice([
+                "I'm not sure I understand. Can you say that another way?",
+                "Hmm... I didn't get that. Try rephrasing!",
+                "Sorry, I didn't quite catch that."
+            ])
+
         predicted_intent = self.intents[predicted_class_index]
 
         if self.function_mappings and predicted_intent in self.function_mappings:
@@ -136,6 +147,7 @@ class ChatbotAssistant:
             return random.choice(self.intents_responses[predicted_intent])
         else:
             return None
+
 
 
 def get_stocks():
