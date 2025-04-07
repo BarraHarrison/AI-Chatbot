@@ -1,5 +1,12 @@
+from main import ChatbotAssistant, get_stocks, get_date, get_time, get_joke, get_news, get_weather, get_specific_stock, company_to_symbol
+from PyQt5.QtWidgets import (
+    QApplication, QWidget, QVBoxLayout, QHBoxLayout,
+    QTextEdit, QLineEdit, QPushButton
+)
+from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import Qt
+import speech_recognition as sr
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QTextEdit, QLineEdit, QPushButton
 
 class ChatBotGUI(QWidget):
     def __init__(self, assistant):
@@ -9,19 +16,28 @@ class ChatBotGUI(QWidget):
         self.setGeometry(100, 100, 500, 600)
 
         self.layout = QVBoxLayout()
-
         self.chat_display = QTextEdit()
         self.chat_display.setReadOnly(True)
         self.layout.addWidget(self.chat_display)
 
+        self.input_layout = QHBoxLayout()
+
         self.input_box = QLineEdit()
+        self.input_box.setPlaceholderText("Type your message...")
         self.input_box.returnPressed.connect(self.handle_input)
-        self.layout.addWidget(self.input_box)
+        self.input_layout.addWidget(self.input_box)
 
-        self.send_button = QPushButton("Send")
+        self.send_button = QPushButton("📤")
+        self.send_button.setToolTip("Send")
         self.send_button.clicked.connect(self.handle_input)
-        self.layout.addWidget(self.send_button)
+        self.input_layout.addWidget(self.send_button)
 
+        self.mic_button = QPushButton("🎤")
+        self.mic_button.setToolTip("Speak")
+        self.mic_button.clicked.connect(self.handle_voice_input)
+        self.input_layout.addWidget(self.mic_button)
+
+        self.layout.addLayout(self.input_layout)
         self.setLayout(self.layout)
 
     def handle_input(self):
@@ -32,13 +48,24 @@ class ChatBotGUI(QWidget):
         self.chat_display.append(f"🧑 You: {user_input}")
         response = self.assistant.process_message(user_input)
         self.chat_display.append(f"🤖 Bot: {response}\n")
-
         self.input_box.clear()
 
-if __name__ == "__main__":
-    from main import ChatbotAssistant, get_stocks, get_date, get_time, get_joke, get_news, get_weather  # your functions
-    from main import get_specific_stock, company_to_symbol
+    def handle_voice_input(self):
+        recognizer = sr.Recognizer()
+        mic = sr.Microphone()
+        try:
+            self.chat_display.append("🎤 Listening...")
+            with mic as source:
+                audio = recognizer.listen(source)
+            user_input = recognizer.recognize_google(audio)
+            self.chat_display.append(f"🧑 You (voice): {user_input}")
+            response = self.assistant.process_message(user_input)
+            self.chat_display.append(f"🤖 Bot: {response}\n")
+        except Exception as e:
+            self.chat_display.append(f"⚠️ Error with microphone: {str(e)}")
 
+
+if __name__ == "__main__":
     assistant = ChatbotAssistant("intents.json", function_mappings={
         "stocks": get_stocks,
         "date": get_date,
