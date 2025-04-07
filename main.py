@@ -1,6 +1,7 @@
 import os 
 import json
 import random
+import datetime
 
 import nltk
 import numpy as np
@@ -138,8 +139,11 @@ class ChatbotAssistant:
 
 
 def get_stocks():
-    stocks = ["META", "TSLA", "MSFT"]
-    return random.sample(stocks, 2)
+    stocks = ["META", "TSLA", "MSFT", "AAPL", "AMZN", "GOOGL"]
+    chosen = random.sample(stocks, 2)
+    return f"Today's stock picks are: {chosen[0]} and {chosen[1]} 📈"
+
+
 
 
 if __name__ == "__main__":
