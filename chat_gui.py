@@ -1,7 +1,7 @@
 from main import ChatbotAssistant, get_stocks, get_date, get_time, get_joke, get_news, get_weather, get_specific_stock, company_to_symbol
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QHBoxLayout,
-    QTextEdit, QLineEdit, QPushButton
+    QTextEdit, QLineEdit, QPushButton, QMessageBox
 )
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
@@ -46,6 +46,26 @@ class ChatBotGUI(QWidget):
             return
 
         self.chat_display.append(f"🧑 You: {user_input}")
+
+        # 🔴 Detect exit intent
+        if user_input.lower() in ["leave", "quit", "stop"]:
+            reply = QMessageBox.question(
+                self,
+                "Exit Confirmation",
+                "Do you want to finish our conversation?",
+                QMessageBox.Yes | QMessageBox.No,
+                QMessageBox.No
+            )
+
+            if reply == QMessageBox.Yes:
+                self.chat_display.append("🤖 Alright, goodbye! 👋")
+                QApplication.quit()
+            else:
+                self.chat_display.append("🤖 No problem, let’s keep chatting!")
+            self.input_box.clear()
+            return
+
+        # Normal processing
         response = self.assistant.process_message(user_input)
         self.chat_display.append(f"🤖 Bot: {response}\n")
         self.input_box.clear()
