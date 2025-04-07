@@ -143,7 +143,13 @@ def get_stocks():
 
 
 if __name__ == "__main__":
-    assistant = ChatbotAssistant("intents.json", function_mappings={"stocks": get_stocks})
+    assistant = ChatbotAssistant("intents.json", function_mappings={
+    "stocks": get_stocks,
+    "date": get_date,
+    "time": get_time,
+    "joke": get_joke
+})
+
     assistant.parse_intents()
     assistant.prepare_data()
 
