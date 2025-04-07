@@ -132,11 +132,8 @@ class ChatbotAssistant:
         predicted_class_index = predicted_class_index.item()
 
         if confidence < 0.75:
-            return random.choice([
-                "I'm not sure I understand. Can you say that another way?",
-                "Hmm... I didn't get that. Try rephrasing!",
-                "Sorry, I didn't quite catch that."
-            ])
+            return random.choice(self.intents_responses.get("fallback", ["I'm not sure I understand."]))
+
 
         predicted_intent = self.intents[predicted_class_index]
 
