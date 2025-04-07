@@ -159,6 +159,7 @@ def get_stocks():
     results = []
 
     for symbol in selected:
+        print(f"Fetching data for: {symbol}")
         url = f"https://api.twelvedata.com/quote?symbol={symbol}&apikey={api_key}"
         response = requests.get(url)
 
