@@ -11,6 +11,8 @@ import torch.nn as nn
 import torch.nn.functional as F 
 import torch.optim as optim 
 from torch.utils.data import DataLoader, TensorDataset
+
+from PyQt5.QtWidgets import QInputDialog
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -229,9 +231,12 @@ def get_news():
     
 
 def get_weather():
-    api_key = os.getenv("WEATHER_API_KEY")
-    city = input("🤖 Which city would you like the weather for? ").strip()
+    city, ok = QInputDialog.getText(None, "Weather Request", "Which city would you like the weather for?")
+    
+    if not ok or not city:
+        return "No city entered. Try again."
 
+    api_key = os.getenv("WEATHER_API_KEY")
     url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
     response = requests.get(url)
 
