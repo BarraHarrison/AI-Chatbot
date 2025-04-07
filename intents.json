@@ -292,6 +292,15 @@
                 "Time"
             ],
             "responses": []
+        },
+        {
+            "tag": "fallback",
+            "patterns": [],
+            "responses": [
+                "I'm not sure I understand. Can you say that another way?",
+                "Hmm... I didn't get that. Try rephrasing!",
+                "Sorry, I didn't quite catch that."
+            ]
         }
     ]
 }
