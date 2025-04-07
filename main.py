@@ -143,7 +143,14 @@ def get_stocks():
     chosen = random.sample(stocks, 2)
     return f"Today's stock picks are: {chosen[0]} and {chosen[1]} 📈"
 
+def get_date():
+    pass
 
+def get_time():
+    pass
+
+def get_joke():
+    pass
 
 
 if __name__ == "__main__":
