@@ -153,9 +153,28 @@ class ChatbotAssistant:
 
 
 def get_stocks():
-    stocks = ["META", "TSLA", "MSFT", "AAPL", "AMZN", "GOOGL"]
-    chosen = random.sample(stocks, 2)
-    return f"Today's stock picks are: {chosen[0]} and {chosen[1]} 📈"
+    api_key = os.getenv("STOCK_API_KEY")
+    symbols = ["AAPL", "TSLA", "MSFT", "GOOGL", "AMZN", "META"]
+    selected = random.sample(symbols, 2)
+    results = []
+
+    for symbol in selected:
+        url = f"https://api.twelvedata.com/quote?symbol={symbol}&apikey={api_key}"
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            data = response.json()
+            if "price" in data:
+                price = data["price"]
+                change = data["percent_change"]
+                results.append(f"{symbol}: ${price} ({change}%)")
+            else:
+                results.append(f"{symbol}: No data available.")
+        else:
+            results.append(f"{symbol}: Failed to fetch data.")
+
+    return "📈 Real-time stock update:\n" + "\n".join(results)
+
 
 def get_date():
     today = datetime.date.today().strftime("%A, %B %d, %Y")
