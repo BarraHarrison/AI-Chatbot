@@ -267,6 +267,19 @@
             "responses": []
         },
         {
+            "tag": "specific_stock",
+            "patterns": [
+                "What’s Tesla doing?",
+                "Tell me about Apple stock",
+                "Price of Meta",
+                "How is Nvidia performing?",
+                "Show me Google stock",
+                "Amazon share price",
+                "What is Microsoft trading at?"
+            ],
+            "responses": []
+        },
+        {
             "tag": "date",
             "patterns": [
                 "What is today's date?",

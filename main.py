@@ -18,6 +18,22 @@ nltk.download("punkt_tab")
 
 NEWS_API_KEY = os.getenv("NEWS_API_KEY")
 
+company_to_symbol = {
+    "tesla": "TSLA",
+    "apple": "AAPL",
+    "microsoft": "MSFT",
+    "google": "GOOGL",
+    "alphabet": "GOOGL",
+    "meta": "META",
+    "facebook": "META",
+    "amazon": "AMZN",
+    "nvidia": "NVDA",
+    "netflix": "NFLX",
+    "intel": "INTC",
+    "ibm": "IBM"
+}
+
+
 class ChatbotModel(nn.Module):
     def __init__(self, input_size, output_size):
         super(ChatbotModel, self).__init__()
@@ -127,6 +143,11 @@ class ChatbotAssistant:
         bag = self.bag_of_words(words, self.vocabulary)
         bag_tensor = torch.tensor([bag], dtype=torch.float32)
 
+        if any(word in input_message.lower() for word in ["stock", "price", "doing", "share", "market"]):
+            for company in company_to_symbol.keys():
+                if company in input_message.lower():
+                    return get_specific_stock(company)
+
         self.model.eval()
         with torch.no_grad():
             predictions = self.model(bag_tensor)
@@ -222,6 +243,30 @@ def get_weather():
         return f"🌦️ Weather in {city}:\n{weather}, {temp}°C (feels like {feels_like}°C)"
     else:
         return f"Sorry, I couldn't find the weather for '{city}'. Please try another city."
+
+
+def get_specific_stock(company_name):
+    api_key = os.getenv("STOCK_API_KEY")
+    company = company_name.lower()
+    symbol = company_to_symbol.get(company)
+
+    if not symbol:
+        return f"Sorry, I don’t know the stock symbol for '{company_name}'. Try another company."
+
+    url = f"https://api.twelvedata.com/quote?symbol={symbol}&apikey={api_key}"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        data = response.json()
+        if "close" in data and "percent_change" in data:
+            close = data["close"]
+            change = data["percent_change"]
+            status = "🟢 Market Open" if data.get("is_market_open") else "🔴 Market Closed"
+            return f"{company_name.title()} ({symbol}): ${close} ({change}%) - {status}"
+        else:
+            return f"{company_name.title()}: Data not available."
+    else:
+        return f"{company_name.title()}: Failed to fetch data."
 
 
 
