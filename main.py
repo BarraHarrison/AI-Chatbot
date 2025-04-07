@@ -2,6 +2,7 @@ import os
 import json
 import random
 import datetime
+import requests
 
 import nltk
 import numpy as np
@@ -10,8 +11,12 @@ import torch.nn as nn
 import torch.nn.functional as F 
 import torch.optim as optim 
 from torch.utils.data import DataLoader, TensorDataset
+from dotenv import load_dotenv
 
+load_dotenv()
 nltk.download("punkt_tab")
+
+NEWS_API_KEY = os.getenv("NEWS_API_KEY")
 
 class ChatbotModel(nn.Module):
     def __init__(self, input_size, output_size):
@@ -168,6 +173,17 @@ def get_joke():
         "How many programmers does it take to change a light bulb? None. It's a hardware problem!"
     ]
     return random.choice(jokes)
+
+def get_news():
+    url = f"https://newsapi.org/v2/top-headlines?country=us&pageSize=3&apiKey={NEWS_API_KEY}"
+    response = requests.get(url)
+    
+    if response.status_code == 200:
+        articles = response.json().get("articles", [])
+        headlines = [f"- {article['title']}" for article in articles]
+        return "📰 Here are the top headlines:\n" + "\n".join(headlines)
+    else:
+        return "Sorry, I couldn't fetch the news at the moment."
 
 
 if __name__ == "__main__":
