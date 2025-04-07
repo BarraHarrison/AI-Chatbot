@@ -149,10 +149,22 @@ if __name__ == "__main__":
     assistant.train_model(batch_size=8, lr=0.001, epochs=100)
     assistant.save_model("chatbot_model.pth", "dimensions.json")
 
+    print("🤖 Chatbot is ready! Type your message below (type 'quit', 'stop', or 'leave' to exit).")
+
     while True:
-        message = input("Enter your message: ")
+        message = input("You: ").strip().lower()
 
-        if message == "/quit":
-            break
+        if message in ["quit", "stop", "leave"]:
+            confirm = input("🤖 Do you want to finish our conversation? (yes/no): ").strip().lower()
+            if confirm in ["yes", "y"]:
+                print("🤖 Alright, goodbye! 👋")
+                break
+            else:
+                print("🤖 No problem! Let's keep chatting.")
+                continue
 
-        print(assistant.process_message(message))
+        response = assistant.process_message(message)
+        if response:
+            print(f"🤖 {response}")
+        else:
+            print("🤖 Sorry, I didn't understand that.")
