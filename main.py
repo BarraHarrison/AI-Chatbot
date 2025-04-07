@@ -154,7 +154,7 @@ class ChatbotAssistant:
 
 def get_stocks():
     api_key = os.getenv("STOCK_API_KEY")
-    symbols = ["AAPL", "TSLA", "MSFT", "GOOGL", "AMZN", "META"]
+    symbols = ["AAPL", "TSLA", "MSFT", "GOOGL", "AMZN", "META", "NVDA", "NFLX", "INTC", "IBM"]
     selected = random.sample(symbols, 2)
     results = []
 
