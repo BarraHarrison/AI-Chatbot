@@ -242,6 +242,56 @@
                 "You might enjoy The Matrix or Interstellar.",
                 "If you're into comedies, try Superbad or The Grand Budapest Hotel."
             ]
+        },
+        {
+            "tag": "joke",
+            "patterns": [
+                "Tell me a joke",
+                "Make me laugh",
+                "I want a joke",
+                "Do you know a joke?",
+                "Say something funny",
+                "Joke"
+            ],
+            "responses": []
+        },
+        {
+            "tag": "stocks",
+            "patterns": [
+                "Show me some stocks",
+                "What are the stock updates?",
+                "Stock market news",
+                "Stock info",
+                "How are stocks doing?",
+                "Give me stock updates",
+                "Stocks"
+            ],
+            "responses": []
+        },
+        {
+            "tag": "date",
+            "patterns": [
+                "What is today's date?",
+                "Tell me the date",
+                "Current date?",
+                "What's the date today?",
+                "Do you know the date?",
+                "Date"
+            ],
+            "responses": []
+        },
+        {
+            "tag": "time",
+            "patterns": [
+                "What time is it?",
+                "Tell me the time",
+                "Current time?",
+                "Time please",
+                "Clock",
+                "Do you know the time?",
+                "Time"
+            ],
+            "responses": []
         }
     ]
 }
