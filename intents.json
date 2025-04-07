@@ -84,15 +84,13 @@
             "tag": "weather",
             "patterns": [
                 "What's the weather like?",
+                "Tell me the weather",
+                "Weather update",
                 "Is it sunny today?",
-                "Will it rain tomorrow?",
-                "Tell me the forecast"
+                "Forecast?",
+                "Weather"
             ],
-            "responses": [
-                "I'm not connected to a weather API right now, but you can check your local forecast online!",
-                "It's always sunny in the virtual world!",
-                "You might want to check a weather app for accurate info."
-            ]
+            "responses": []
         },
         {
             "tag": "book_flight",

@@ -210,7 +210,8 @@ if __name__ == "__main__":
     "date": get_date,
     "time": get_time,
     "joke": get_joke,
-    "news": get_news
+    "news": get_news,
+    "weather": get_weather
 })
 
     assistant.parse_intents()
