@@ -73,16 +73,27 @@ class ChatBotGUI(QWidget):
     def handle_voice_input(self):
         recognizer = sr.Recognizer()
         mic = sr.Microphone()
+
+        self.chat_display.append("🎤 Listening...")
+
         try:
-            self.chat_display.append("🎤 Listening...")
             with mic as source:
-                audio = recognizer.listen(source)
+                recognizer.adjust_for_ambient_noise(source)
+                audio = recognizer.listen(source, timeout=5)
+
             user_input = recognizer.recognize_google(audio)
             self.chat_display.append(f"🧑 You (voice): {user_input}")
+
             response = self.assistant.process_message(user_input)
             self.chat_display.append(f"🤖 Bot: {response}\n")
+
+        except sr.UnknownValueError:
+            self.chat_display.append("🤖 Sorry, I didn't catch that. Please try again.")
+        except sr.RequestError:
+            self.chat_display.append("⚠️ Could not request results from Google Speech API.")
         except Exception as e:
-            self.chat_display.append(f"⚠️ Error with microphone: {str(e)}")
+            self.chat_display.append(f"⚠️ Mic error: {str(e)}")
+
 
 
 if __name__ == "__main__":
