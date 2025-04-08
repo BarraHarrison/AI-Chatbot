@@ -93,6 +93,28 @@ class ChatBotGUI(QWidget):
             user_input = recognizer.recognize_google(audio)
             self.chat_display.append(f"🧑 You (voice): {user_input}")
 
+            # 🔴 Check for voice-exit intent
+            if user_input.lower() in ["leave", "quit", "stop"]:
+                reply = QMessageBox.question(
+                    self,
+                    "Exit Confirmation",
+                    "Do you want to finish our conversation?",
+                    QMessageBox.Yes | QMessageBox.No,
+                    QMessageBox.No
+                )
+
+                if reply == QMessageBox.Yes:
+                    self.chat_display.append("🤖 Alright, goodbye! 👋")
+                    self.engine.say("Alright, goodbye!")
+                    self.engine.runAndWait()
+                    QApplication.quit()
+                else:
+                    self.chat_display.append("🤖 No problem, let’s keep chatting!")
+                    self.engine.say("No problem, let’s keep chatting!")
+                    self.engine.runAndWait()
+                return
+
+            # ✅ Process the spoken input normally
             response = self.assistant.process_message(user_input)
             self.chat_display.append(f"🤖 Bot: {response}\n")
             self.engine.say(response)
@@ -104,6 +126,7 @@ class ChatBotGUI(QWidget):
             self.chat_display.append("⚠️ Could not request results from Google Speech API.")
         except Exception as e:
             self.chat_display.append(f"⚠️ Mic error: {str(e)}")
+
 
 
 
