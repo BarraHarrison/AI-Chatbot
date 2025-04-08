@@ -7,11 +7,17 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 import speech_recognition as sr
 import sys
+import pyttsx3
 
 class ChatBotGUI(QWidget):
     def __init__(self, assistant):
         super().__init__()
         self.assistant = assistant
+
+        self.engine = pyttsx3.init()
+        self.engine.setProperty('rate', 170)
+        self.engine.setProperty('volume', 1.0)
+
         self.setWindowTitle("AI Chatbot Assistant")
         self.setGeometry(100, 100, 500, 600)
 
@@ -68,6 +74,10 @@ class ChatBotGUI(QWidget):
         # Normal processing
         response = self.assistant.process_message(user_input)
         self.chat_display.append(f"🤖 Bot: {response}\n")
+
+        self.engine.say(response)
+        self.engine.runAndWait()
+
         self.input_box.clear()
 
     def handle_voice_input(self):
