@@ -14,7 +14,7 @@ class ChatBotGUI(QWidget):
         super().__init__()
         self.assistant = assistant
 
-        self.engine = pyttsx3.init()
+        self.engine = pyttsx3.init(driverName='nsss')
         self.engine.setProperty('rate', 170)
         self.engine.setProperty('volume', 1.0)
 
