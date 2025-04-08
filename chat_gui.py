@@ -65,6 +65,8 @@ class ChatBotGUI(QWidget):
 
             if reply == QMessageBox.Yes:
                 self.chat_display.append("🤖 Alright, goodbye! 👋")
+                self.engine.say("Alright, goodbye!")
+                self.engine.runAndWait()
                 QApplication.quit()
             else:
                 self.chat_display.append("🤖 No problem, let’s keep chatting!")
