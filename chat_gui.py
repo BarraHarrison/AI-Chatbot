@@ -74,10 +74,6 @@ class ChatBotGUI(QWidget):
         # Normal processing
         response = self.assistant.process_message(user_input)
         self.chat_display.append(f"🤖 Bot: {response}\n")
-
-        self.engine.say(response)
-        self.engine.runAndWait()
-
         self.input_box.clear()
 
     def handle_voice_input(self):
@@ -96,6 +92,8 @@ class ChatBotGUI(QWidget):
 
             response = self.assistant.process_message(user_input)
             self.chat_display.append(f"🤖 Bot: {response}\n")
+            self.engine.say(response)
+            self.engine.runAndWait()
 
         except sr.UnknownValueError:
             self.chat_display.append("🤖 Sorry, I didn't catch that. Please try again.")
