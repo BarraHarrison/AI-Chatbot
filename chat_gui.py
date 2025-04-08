@@ -17,6 +17,7 @@ class ChatBotGUI(QWidget):
         self.engine = pyttsx3.init(driverName='nsss')
         self.engine.setProperty('rate', 170)
         self.engine.setProperty('volume', 1.0)
+        self.engine.setProperty('voice', 'com.apple.speech.synthesis.voice.moira')
 
         self.setWindowTitle("AI Chatbot Assistant")
         self.setGeometry(100, 100, 500, 600)
