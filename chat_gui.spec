@@ -42,6 +42,6 @@ exe = EXE(
 app = BUNDLE(
     exe,
     name='chat_gui.app',
-    icon=None,
+    icon='icon.icns',
     bundle_identifier=None,
 )
