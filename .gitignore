@@ -2,3 +2,6 @@ venv/
 chatbot_model.pth
 dimensions.json
 .env
+.DS_Store
+build/
+dist/
