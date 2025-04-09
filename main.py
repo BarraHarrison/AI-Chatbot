@@ -1,3 +1,4 @@
+import sys
 import os 
 import json
 import random
@@ -15,7 +16,12 @@ from torch.utils.data import DataLoader, TensorDataset
 from PyQt5.QtWidgets import QInputDialog
 from dotenv import load_dotenv
 
-load_dotenv()
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for development and PyInstaller """
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
+
+load_dotenv(resource_path(".env"))
 nltk.download("punkt_tab")
 
 NEWS_API_KEY = os.getenv("NEWS_API_KEY")
@@ -77,7 +83,7 @@ class ChatbotAssistant:
 
     def parse_intents(self):
         if os.path.exists(self.intents_path):
-            with open(self.intents_path, "r") as f:
+            with open(resource_path(self.intents_path), "r") as f:
                 intents_data = json.load(f)
 
             for intent in intents_data["intents"]:
@@ -135,10 +141,10 @@ class ChatbotAssistant:
             json.dump({"input_size": self.X.shape[1], "output_size": len(self.intents)}, f)
 
     def load_model(self, model_path, dimensions_path):
-        with open(dimensions_path, "r") as f:
+        with open(resource_path(dimensions_path), "r") as f:
             dimensions = json.load(f)
         self.model = ChatbotModel(dimensions["input_size"], dimensions["output_size"])
-        self.model.load_state_dict(torch.load(model_path))
+        self.model.load_state_dict(torch.load(resource_path(model_path)))
 
     def process_message(self, input_message):
         words = self.tokenize_and_lemmatize(input_message)
