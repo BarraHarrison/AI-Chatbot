@@ -5,3 +5,5 @@ dimensions.json
 .DS_Store
 build/
 dist/
+icon.icns
+icon.iconset/
