@@ -8,7 +8,7 @@ a = Analysis(
     datas=[('intents.json', '.'),
         ('dimensions.json', '.'),
         ('chatbot_model.pth', '.'),
-        ('dist/.env', '.')],
+        ('.env', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
