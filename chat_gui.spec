@@ -1,6 +1,5 @@
 # -*- mode: python ; coding: utf-8 -*-
 
-
 a = Analysis(
     ['chat_gui.py'],
     pathex=[],
@@ -9,7 +8,7 @@ a = Analysis(
         ('intents.json', '.'),
         ('dimensions.json', '.'),
         ('chatbot_model.pth', '.'),
-        ('.env', '.')
+        ('.env', '.'),
     ],
     hiddenimports=[],
     hookspath=[],
@@ -19,6 +18,7 @@ a = Analysis(
     noarchive=False,
     optimize=0,
 )
+
 pyz = PYZ(a.pure)
 
 exe = EXE(
@@ -31,14 +31,15 @@ exe = EXE(
     bootloader_ignore_signals=False,
     strip=False,
     upx=True,
-    console=False,
+    console=False,  # ✅ Ensures no terminal window
     disable_windowed_traceback=False,
-    argv_emulation=False,
+    argv_emulation=True,  # ✅ Important for macOS GUI apps
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['icon.icns'],
+    icon='icon.icns',  # ✅ Moved out of list brackets
 )
+
 coll = COLLECT(
     exe,
     a.binaries,
@@ -48,9 +49,10 @@ coll = COLLECT(
     upx_exclude=[],
     name='chat_gui',
 )
+
 app = BUNDLE(
     coll,
     name='chat_gui.app',
     icon='icon.icns',
-    bundle_identifier=None,
+    bundle_identifier='com.barraharrison.chatbot',  # optional but recommended
 )
